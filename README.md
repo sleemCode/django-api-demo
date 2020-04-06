@@ -2,6 +2,7 @@
 
 - [Django API Table Of Content](#django-api-table-of-content)
   - [Setup](#setup)
+  - [Questions](#questions)
   - [Links](#links)
 
 ## [Setup](#django-api-table-of-content)
@@ -15,8 +16,18 @@ when creating requirement.txt for django version and djangorestframeowrk i searc
 
 `Dockerfile build .` => build the image
 `docker-compose build` => build a service on the image 
+  run this again, if adding new pacakged to requirement.txt
 `docker-compose run app sh -c "django-admin.py startproject app ."` build django service on our image
+`docker-compose run app sh -c "python manage.py test"` run my unit tests
+`docker-compose run app sh -c "python manage.py startapp core"` creating a new plugin (forgot best term)
+  per video, where my core code lives.
 
+
+
+## [Questions](#django-api-table-of-content)
+
+Maybe i should use github action instead of Travis_CI since not free for private repos?
+Is flake8 the best liniting tool? Do a a bit of search and compare alternative.
 
 ## [Links](#django-api-table-of-content)
 
