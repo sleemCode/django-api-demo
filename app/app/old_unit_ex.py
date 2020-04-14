@@ -4,6 +4,7 @@ from app.calc import add, substract
 # because i prefixed it with old, unit test will not run
 # instead now unit test from core/tests are now active
 
+
 class CalcTest(TestCase):
 
     def test_add_numbers(self):
