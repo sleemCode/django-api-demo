@@ -4,6 +4,7 @@
   - [Setup](#setup)
   - [Questions](#questions)
   - [Links](#links)
+  - [Setup Postgres](#setup-postgres)
 
 ## [Setup](#django-api-table-of-content)
 
@@ -24,6 +25,7 @@ when creating requirement.txt for django version and djangorestframeowrk i searc
   per video, where my core code lives.  
   we deleted the view.py and tests.py => just play along :-)  
 `docker-compose run app sh -c "python manage.py makemigrations core"` => updating db 
+
 
 
 ## [Questions](#django-api-table-of-content)
@@ -52,3 +54,11 @@ Is flake8 the best liniting tool? Do a a bit of search and compare alternative.
 <>
 <>
 <>
+
+## [Setup Postgres](#django-api-table-of-content)
+
+need to install postgres on the machine/server (postgresql-client)
+need to install python dependency so that django can communicate with postrgres (psycopg2>=2.7.5<2.8.0)
+need to setup values for postgres such username and pass to environment variables or read from file method
+  so that these info is not pushed to github repo or visible to anyone unless they have access to machine
+
