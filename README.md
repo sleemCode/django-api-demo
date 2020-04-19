@@ -48,7 +48,7 @@ Is flake8 the best liniting tool? Do a a bit of search and compare alternative.
 
  <https://www.django-rest-framework.org>  
 <https://www.django-rest-framework.org/api-guide/views/>  
-<>
+<https://docs.djangoproject.com/en/2.2/topics/testing/tools/#overview-and-a-quick-example> => links for Client documention
 <>
 <>
 <>
