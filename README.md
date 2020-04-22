@@ -27,6 +27,16 @@ when creating requirement.txt for django version and djangorestframeowrk i searc
 `docker-compose run app sh -c "python manage.py makemigrations core"` => updating db 
 
 
+once postgres is installed and runing, on the UI, navigate to admin  
+make sure admin is working  
+navigate to terminal and create superser:  
+`docker-compose run app sh -c "python manage.py createsuperuser"`  
+email: superUserRS@test.com  
+pass: pass123  
+
+
+API starts here
+`docker-compose run --rm app sh -c "python manage.py startapp user"` => updating db  
 
 ## [Questions](#django-api-table-of-content)
 
@@ -45,6 +55,17 @@ How can i access my dependencies/packaged when working project in on a docker co
   `docker exec -it <mycontainer> sh` => this is may be the way to accees container  
 Maybe i should use github action instead of Travis_CI since not free for private repos?  
 Is flake8 the best liniting tool? Do a a bit of search and compare alternative.  
+
+
+What is the difference between *args and **params when passing these as method signature  
+look up again get_user_model source code  
+
+Search and understand the main purpose of serializers 
+
+
+
+
+
 
 ## [Links](#django-api-table-of-content)
 
