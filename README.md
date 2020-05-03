@@ -25,7 +25,8 @@ when creating requirement.txt for django version and djangorestframeowrk i searc
   per video, where my core code lives.  
   we deleted the view.py and tests.py => just play along :-)  
 `docker-compose run app sh -c "python manage.py makemigrations core"` => updating db 
-
+  better to mention core as above to be more spefici into which app the models as been created within
+  
 
 once postgres is installed and runing, on the UI, navigate to admin  
 make sure admin is working  
