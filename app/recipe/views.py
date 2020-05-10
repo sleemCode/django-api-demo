@@ -17,8 +17,17 @@ class BaseRecipeAttrViewSet(viewsets.GenericViewSet,
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        """Return object for the current authenticated user only"""
-        return self.queryset.filter(user=self.request.user).order_by('-name')
+        """Return objects for current user"""
+        assigned_only = bool(
+            int(self.request.query_params.get('assigned_only', 0))
+        )
+        queryset = self.queryset
+        if assigned_only:
+            queryset = queryset.filter(recipe__isnull=False)
+
+        return queryset.filter(
+            user=self.request.user
+        ).order_by('-name').distinct()
 
     def perform_create(self, serializer):
         """Create a new object"""
@@ -45,9 +54,23 @@ class RecipeViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
+    def _params_to_ints(self, qs):
+        """Convert a list of string IDs to a list of integers"""
+        return [int(str_id) for str_id in qs.split(',')]
+
     def get_queryset(self):
         """Retrieve the recipes for the authenticated user"""
-        return self.queryset.filter(user=self.request.user)
+        tags = self.request.query_params.get('tags')
+        ingredients = self.request.query_params.get('ingredients')
+        queryset = self.queryset
+        if tags:
+            tag_ids = self._params_to_ints(tags)
+            queryset = queryset.filter(tags__id__in=tag_ids)
+        if ingredients:
+            ingredient_ids = self._params_to_ints(ingredients)
+            queryset = queryset.filter(ingredients__id__in=ingredient_ids)
+
+        return queryset.filter(user=self.request.user)
 
     def get_serializer_class(self):
         """Retrun appropriate serialzier class"""
@@ -124,3 +147,13 @@ class RecipeViewSet(viewsets.ModelViewSet):
 #     def perform_create(self, serializer):
 #         """Create a new ingredient"""
 #         serializer.save(user=self.request.user)
+
+# I know this is wrong. I created a page with search box, which
+# is wired to a view. This page enable any user (no authentication
+# is required) to type any text, and in return the user will get
+# the list of all the recipe available. It is a dummy example,
+# so it does not matter what the user input is.
+
+# In my views.py (for that html page), I do have get_query which
+#  will execute my recipe api created in this course, obviously
+# with some modifications => I doubt that would be the correct usage.
