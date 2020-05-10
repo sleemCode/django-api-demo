@@ -27,6 +27,7 @@ when creating requirement.txt for django version and djangorestframeowrk i searc
 `docker-compose run app sh -c "python manage.py makemigrations core"` => updating db 
   better to mention core as above to be more spefici into which app the models as been created within
   
+To manipulate imgaes, will need to intall pillow dependency
 
 once postgres is installed and runing, on the UI, navigate to admin  
 make sure admin is working  
